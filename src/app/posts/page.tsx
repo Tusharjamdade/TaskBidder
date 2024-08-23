@@ -1,10 +1,10 @@
-import SignupFormDemo from '@/components/example/signup-form-demo'
+import { Jobs } from '@/components/Jobs'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <SignupFormDemo/>
+      <Jobs/>
     </div>
   )
 }

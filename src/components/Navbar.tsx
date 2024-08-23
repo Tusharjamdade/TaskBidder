@@ -34,7 +34,7 @@ const Navbar = () => {
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
           >
             <Package2 className="h-6 w-6" />
-            <span className="sr-only">Acme Inc</span>
+            <span className="sr-only">TaskBidder</span>
           </Link>
           <Link
             href="#"
@@ -46,20 +46,20 @@ const Navbar = () => {
             href="/post"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
-            Post
+            Posts
           </Link>
           <Link
             href="#"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
-            Products
+            Post
           </Link>
-          <Link
+          {/* <Link
             href="#"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
             Customers
-          </Link>
+          </Link> */}
           <Link
             href="/settings"
             className="text-foreground transition-colors hover:text-foreground"
