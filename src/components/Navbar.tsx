@@ -1,5 +1,5 @@
+"use client"
 import React from 'react'
-import Link from "next/link"
 import { CircleUser, Menu, Package2, Search } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -23,8 +23,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { ModeToggle } from './ModeToggle'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const Navbar = () => {
+  const router =useRouter()
   return (
     <div>
       <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
@@ -43,23 +46,17 @@ const Navbar = () => {
             Dashboard
           </Link>
           <Link
-            href="/post"
+            href="/posts"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
             Posts
           </Link>
           <Link
-            href="#"
+            href="/post"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
             Post
           </Link>
-          {/* <Link
-            href="#"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Customers
-          </Link> */}
           <Link
             href="/settings"
             className="text-foreground transition-colors hover:text-foreground"
@@ -94,22 +91,22 @@ const Navbar = () => {
                 Dashboard
               </Link>
               <Link
-                href="#"
+                href="/posts"
                 className="text-muted-foreground hover:text-foreground"
               >
-                Orders
+                Posts
               </Link>
               <Link
-                href="#"
+                href="/post"
                 className="text-muted-foreground hover:text-foreground"
               >
-                Products
+                Post
               </Link>
               <Link
-                href="#"
+                href="/settings"
                 className="text-muted-foreground hover:text-foreground"
               >
-                Customers
+                Settings
               </Link>
               <Link href="#" className="hover:text-foreground">
                 Settings
@@ -137,10 +134,10 @@ const Navbar = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel ><Link href={"/profile"}>My Account</Link></DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
+              <DropdownMenuItem><Link href={"/settings"}>Settings</Link></DropdownMenuItem>
+              <DropdownMenuItem><Link href={"/support"}>Support</Link></DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuContent>
