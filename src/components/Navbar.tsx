@@ -43,10 +43,10 @@ const Navbar = () => {
             Dashboard
           </Link>
           <Link
-            href="#"
+            href="/post"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
-            Orders
+            Post
           </Link>
           <Link
             href="#"
@@ -61,7 +61,7 @@ const Navbar = () => {
             Customers
           </Link>
           <Link
-            href="#"
+            href="/settings"
             className="text-foreground transition-colors hover:text-foreground"
           >
             Settings
