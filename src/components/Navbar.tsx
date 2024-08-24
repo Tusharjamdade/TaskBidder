@@ -58,6 +58,12 @@ const Navbar = () => {
             Post
           </Link>
           <Link
+            href="/faq"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            FAQ
+          </Link>
+          <Link
             href="/settings"
             className="text-foreground transition-colors hover:text-foreground"
           >
@@ -109,7 +115,7 @@ const Navbar = () => {
                 Settings
               </Link>
               <Link href="#" className="hover:text-foreground">
-                Settings
+                FAQ
               </Link>
             </nav>
           </SheetContent>

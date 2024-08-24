@@ -1,5 +1,6 @@
 "use client"
 import { AccordionDemo } from "@/components/AccordionDemo";
+import { Aboutus } from "@/components/component/Aboutus";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
@@ -43,7 +44,7 @@ export default function Home() {
         </div>
       </div>
       </BackgroundBeamsWithCollision>
-      <AccordionDemo/>
+      <Aboutus/>
     </div>
   );
 }
