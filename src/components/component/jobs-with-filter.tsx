@@ -132,6 +132,36 @@ export function JobsWithFilter() {
       location: "Remote",
       jobType: "Full-time",
     },
+    {
+      id: 9,
+      thumbnail: "/placeholder.svg",
+      title: "Software Engineer",
+      description:
+        "We are looking for a skilled software engineer to join our team and help us build innovative new features for our platform.",
+      category: "Engineering",
+      location: "Remote",
+      jobType: "Full-time",
+    },
+    {
+      id: 9,
+      thumbnail: "/placeholder.svg",
+      title: "Software Engineer",
+      description:
+        "We are looking for a skilled software engineer to join our team and help us build innovative new features for our platform.",
+      category: "Engineering",
+      location: "Remote",
+      jobType: "Full-time",
+    },
+    {
+      id: 9,
+      thumbnail: "/placeholder.svg",
+      title: "Software Engineer",
+      description:
+        "We are looking for a skilled software engineer to join our team and help us build innovative new features for our platform.",
+      category: "Engineering",
+      location: "Remote",
+      jobType: "Full-time",
+    },
   ]
   const filteredPosts = useMemo(() => {
     return posts.filter((post) => {

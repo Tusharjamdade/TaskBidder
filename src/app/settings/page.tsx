@@ -1,10 +1,11 @@
+import { SettingsPage } from '@/components/component/settings-page'
 import { Settings } from '@/components/Dashboard'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <Settings/>
+      <SettingsPage/>
     </div>
   )
 }

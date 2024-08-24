@@ -43,6 +43,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Profile from "./settings/Profile"
 import { NavigationBar } from "./settings/NavigationBar"
 import Education from "./settings/Education"
+import { ProfilePage } from "./component/profile-page"
 
 export function Settings() {
   const [activeSection, setActiveSection] = React.useState<Options>(Options.PROFILE);
@@ -82,7 +83,7 @@ export function Settings() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          {activeSection === Options.EDUCATION ? <Education /> : <Profile />}
+          {activeSection === Options.EDUCATION ? <Education /> : <ProfilePage />}
         </div>
       </main>
     </div>
