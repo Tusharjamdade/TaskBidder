@@ -139,7 +139,7 @@ const Navbar = () => {
               <DropdownMenuItem><Link href={"/settings"}>Settings</Link></DropdownMenuItem>
               <DropdownMenuItem><Link href={"/support"}>Support</Link></DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem><Link href={"/"}>Logout</Link></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
