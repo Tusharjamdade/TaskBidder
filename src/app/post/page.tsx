@@ -1,10 +1,11 @@
-import SignupFormDemo from '@/components/example/signup-form-demo'
+
+import { JobPostPage } from '@/components/component/job-post-page'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <SignupFormDemo/>
+      <JobPostPage/>
     </div>
   )
 }
