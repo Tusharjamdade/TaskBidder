@@ -1,8 +1,16 @@
+"use client"
 import { ProfilePage } from '@/components/component/profile-page'
+import { ProfilePageUpdated } from '@/components/component/profile-page-updated'
+import { SettingsPage } from '@/components/component/settings-page'
+import SignupFormDemo from '@/components/example/signup-form-demo'
+import Profile from '@/components/settings/Profile'
+import { ThemeProvider } from '@/components/theme-provider'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const page = () => {
+  
   return (
 //     <div>
 //       <section className="w-full overflow-hidden dark:bg-gray-900">
@@ -119,7 +127,8 @@ const page = () => {
 
 //     </div>
         <div>
-            <ProfilePage/>
+          {/* {token} */}
+            <ProfilePageUpdated/>
         </div>
   )
 }
