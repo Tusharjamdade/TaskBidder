@@ -40,6 +40,8 @@ model PostJob{
 }
 
 
+
+
 model Bids{
   id          Int   @id   @default(autoincrement())
   description String  
