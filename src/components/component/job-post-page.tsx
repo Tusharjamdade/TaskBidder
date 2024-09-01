@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/select"
 
 export function JobPostPage() {
-  const [skills, setSkills] = useState(["React", "Node.js", "MongoDB"]); // Initial skills
+  const [skills, setSkills] = useState([]); // Initial skills
   const [newSkill, setNewSkill] = useState("");
   const [date, setDate] = React.useState<Date | undefined>(new Date())
 
@@ -103,7 +103,7 @@ export function JobPostPage() {
                   <span className="text-sm font-medium">{skill}</span>
                   <Button variant="ghost" size="icon" onClick={() => handleRemoveSkill(skill)}>
                     {/* <XIcon className="w-5 h-5 text-muted-foreground" /> */}
-                    Add
+                    -
                   </Button>
                 </div>
               ))}

@@ -1,0 +1,66 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id          Int @id @default(autoincrement())
+  email       String  @unique 
+  password    String
+  jobs        PostJob[]
+  education   Education[]
+  support     Support[]
+  bids        Bids[]
+}
+
+model UserProfile{
+  id          Int      @id @default(autoincrement())
+  firstName   String    
+  lastName    String
+  gender      String
+  jobRole     String
+  bio         String
+  image       String
+}
+
+model PostJob{
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  deadline    String
+  skills      String[]
+  thumbnail   String    
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int
+}
+
+model Bids{
+  id          Int   @id   @default(autoincrement())
+  description String  
+  amount      Int
+  author      User @relation(fields: [authorId], references: [id])
+  authorId    Int
+}
+
+model Education{
+    id            Int     @id @default(autoincrement())
+    author        User    @relation(fields: [autherId],references: [id])
+    autherId      Int
+    university    String
+    Degree        String
+    marks         String
+}
+
+model Support{
+  id            Int     @id @default(autoincrement())
+  email         String
+  subject       String
+  message       String
+  author        User    @relation(fields: [autherId],references: [id])
+  autherId      Int
+}

@@ -44,8 +44,8 @@ export function JobsWithFilter() {
   const posts = [
     {
       id: 1,
-      thumbnail: "/placeholder.svg",
-      title: "Senior Frontend Developer",
+      thumbnail: "/img2.jpg",
+      title: "Tushar Nagnath Jamdade",
       description:
         "We are looking for an experienced frontend developer to join our growing team. You will be responsible for building and maintaining our web applications.",
       category: "Engineering",
@@ -154,7 +154,7 @@ export function JobsWithFilter() {
     },
     {
       id: 9,
-      thumbnail: "/placeholder.svg",
+      thumbnail: "/img2.jpg",
       title: "Software Engineer",
       description:
         "We are looking for a skilled software engineer to join our team and help us build innovative new features for our platform.",
@@ -319,7 +319,7 @@ export function JobsWithFilter() {
           {currentPosts.map((post) => (
             <div key={post.id} className="bg-background rounded-md shadow overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src={post.thumbnail}
                 alt={post.title}
                 width={400}
                 height={225}
