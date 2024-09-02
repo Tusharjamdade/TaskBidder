@@ -37,6 +37,45 @@ export function JobPostPage() {
   };
 
   return (
+   "use client"
+import React, { useState } from "react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+// import { XIcon } from "lucide-react"; // Import an icon for removing skills
+import { Calendar } from "@/components/ui/calendar"
+import { addDays, format } from "date-fns"
+import { Calendar as CalendarIcon } from "lucide-react"
+ 
+import { cn } from "@/lib/utils"
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+export function JobPostPage() {
+  const [skills, setSkills] = useState([]); // Initial skills
+  const [newSkill, setNewSkill] = useState("");
+  const [date, setDate] = React.useState<Date | undefined>(new Date())
+
+  const handleAddSkill = () => {
+    if (newSkill && !skills.includes(newSkill)) {
+      setSkills([...skills, newSkill]);
+      setNewSkill("");
+    }
+  };
+
+  const handleRemoveSkill = (skillToRemove) => {
+    setSkills(skills.filter(skill => skill !== skillToRemove));
+  };
+
+  return (
     <div className="w-full max-w-3xl mx-auto p-4 sm:p-6 md:p-8">
       <div className="space-y-6">
         <div className="grid gap-2">
@@ -124,5 +163,8 @@ export function JobPostPage() {
         </div>
       </div>
     </div>
+  );
+}
+
   );
 }
