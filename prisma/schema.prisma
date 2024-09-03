@@ -31,10 +31,12 @@ model UserProfile{
 model PostJob{
   id          Int      @id @default(autoincrement())
   title       String
+  location    String
   description String
   deadline    String
   skills      String[]
-  thumbnail   String    
+  thumbnail   String   
+  jobType     String
   author   User @relation(fields: [authorId], references: [id])
   authorId Int
 }
