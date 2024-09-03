@@ -1,5 +1,4 @@
-
-import { PrismaClient } from '@prisma/client';
+import prisma from "../../../../../db"
 export async function POST(){
 
 //     id          Int      @id @default(autoincrement())
@@ -23,7 +22,7 @@ export async function POST(){
         skills:["Tushar Jamdade","Ishwar"],
         thumbnail:"21312312"
     }
-    const prisma = new PrismaClient()
+   
     await prisma.postJob.create({
         data:{
             authorId:1,

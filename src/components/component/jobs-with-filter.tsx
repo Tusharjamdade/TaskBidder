@@ -5,9 +5,9 @@ import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuCheckboxItem } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import axios from "axios";
+import prisma from "../../../db";
 import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationLink, PaginationNext } from "@/components/ui/pagination";
-
+import axios from "axios";
 export function JobsWithFilter() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
@@ -23,7 +23,7 @@ export function JobsWithFilter() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/user/getdetails");
+        const response = await axios.get("http://localhost:3000/api/user/getjobs");
         setPosts(response.data.posts);
       } catch (error) {
         console.error("Error fetching posts:", error);

@@ -12,10 +12,12 @@ model User{
   id          Int @id @default(autoincrement())
   email       String  @unique 
   password    String
+  role        String     @default("user")
   jobs        PostJob[]
   education   Education[]
   support     Support[]
   bids        Bids[]
+  profile     UserProfile?
 }
 
 model UserProfile{
@@ -26,6 +28,8 @@ model UserProfile{
   jobRole     String
   bio         String
   image       String
+  author      User @relation(fields: [authorId], references: [id])
+  authorId Int @unique
 }
 
 model PostJob{
