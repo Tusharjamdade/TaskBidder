@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
 import { useState, useMemo, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuCheckboxItem } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import prisma from "../../../db";
 import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationLink, PaginationNext } from "@/components/ui/pagination";
 import axios from "axios";
+
 export function JobsWithFilter() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
@@ -18,13 +18,29 @@ export function JobsWithFilter() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(9);
   const [posts, setPosts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [jobTypes, setJobTypes] = useState([]);
 
-  // Fetch data from API when component mounts
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/user/getjobs");
-        setPosts(response.data.posts);
+        const response = await axios.get('/api/user/getjobs');
+        const jobsWithImageUrls = response.data.posts.map(post => {
+          const blob = new Blob([new Uint8Array(post.thumbnail.data)], { type: 'image/png' });
+          const url = URL.createObjectURL(blob);
+          return { ...post, thumbnailUrl: url };
+        });
+        setPosts(jobsWithImageUrls);
+
+        // Extract unique categories, locations, and job types for filtering
+        const categoriesSet = new Set(jobsWithImageUrls.map(post => post.category));
+        const locationsSet = new Set(jobsWithImageUrls.map(post => post.location));
+        const jobTypesSet = new Set(jobsWithImageUrls.map(post => post.jobType));
+        
+        setCategories([...categoriesSet]);
+        setLocations([...locationsSet]);
+        setJobTypes([...jobTypesSet]);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
@@ -32,7 +48,6 @@ export function JobsWithFilter() {
     getData();
   }, []);
 
-  // Filtered posts based on search term and filters
   const filteredPosts = useMemo(() => {
     return posts.filter((post) => {
       const categoryMatch = filters.category.length === 0 || filters.category.includes(post.category);
@@ -43,7 +58,6 @@ export function JobsWithFilter() {
     });
   }, [filters, searchTerm, posts]);
 
-  // Pagination logic
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
@@ -93,98 +107,42 @@ export function JobsWithFilter() {
               <DropdownMenuContent align="end" className="w-64">
                 <DropdownMenuLabel>Filter by</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuCheckboxItem
-                  checked={filters.category.includes("Engineering")}
-                  onCheckedChange={() => handleFilterChange("category", "Engineering")}
-                >
-                  Engineering
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.category.includes("Marketing")}
-                  onCheckedChange={() => handleFilterChange("category", "Marketing")}
-                >
-                  Marketing
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.category.includes("Design")}
-                  onCheckedChange={() => handleFilterChange("category", "Design")}
-                >
-                  Design
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.category.includes("Data")}
-                  onCheckedChange={() => handleFilterChange("category", "Data")}
-                >
-                  Data
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.category.includes("Sales")}
-                  onCheckedChange={() => handleFilterChange("category", "Sales")}
-                >
-                  Sales
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.category.includes("Project Management")}
-                  onCheckedChange={() => handleFilterChange("category", "Project Management")}
-                >
-                  Project Management
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuCheckboxItem
-                  checked={filters.location.includes("San Francisco, CA")}
-                  onCheckedChange={() => handleFilterChange("location", "San Francisco, CA")}
-                >
-                  San Francisco, CA
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.location.includes("New York, NY")}
-                  onCheckedChange={() => handleFilterChange("location", "New York, NY")}
-                >
-                  New York, NY
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.location.includes("Chicago, IL")}
-                  onCheckedChange={() => handleFilterChange("location", "Chicago, IL")}
-                >
-                  Chicago, IL
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.location.includes("Remote")}
-                  onCheckedChange={() => handleFilterChange("location", "Remote")}
-                >
-                  Remote
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.location.includes("Boston, MA")}
-                  onCheckedChange={() => handleFilterChange("location", "Boston, MA")}
-                >
-                  Boston, MA
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.location.includes("Seattle, WA")}
-                  onCheckedChange={() => handleFilterChange("location", "Seattle, WA")}
-                >
-                  Seattle, WA
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.location.includes("Los Angeles, CA")}
-                  onCheckedChange={() => handleFilterChange("location", "Los Angeles, CA")}
-                >
-                  Los Angeles, CA
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuCheckboxItem
-                  checked={filters.jobType.includes("Full-time")}
-                  onCheckedChange={() => handleFilterChange("jobType", "Full-time")}
-                >
-                  Full-time
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={filters.jobType.includes("Part-time")}
-                  onCheckedChange={() => handleFilterChange("jobType", "Part-time")}
-                >
-                  Part-time
-                </DropdownMenuCheckboxItem>
+                <div>
+                  <DropdownMenuLabel>Category</DropdownMenuLabel>
+                  {categories.map(category => (
+                    <DropdownMenuCheckboxItem
+                      key={category}
+                      checked={filters.category.includes(category)}
+                      onClick={() => handleFilterChange('category', category)}
+                    >
+                      {category}
+                    </DropdownMenuCheckboxItem>
+                  ))}
+                </div>
+                <div>
+                  <DropdownMenuLabel>Location</DropdownMenuLabel>
+                  {locations.map(location => (
+                    <DropdownMenuCheckboxItem
+                      key={location}
+                      checked={filters.location.includes(location)}
+                      onClick={() => handleFilterChange('location', location)}
+                    >
+                      {location}
+                    </DropdownMenuCheckboxItem>
+                  ))}
+                </div>
+                <div>
+                  <DropdownMenuLabel>Job Type</DropdownMenuLabel>
+                  {jobTypes.map(jobType => (
+                    <DropdownMenuCheckboxItem
+                      key={jobType}
+                      checked={filters.jobType.includes(jobType)}
+                      onClick={() => handleFilterChange('jobType', jobType)}
+                    >
+                      {jobType}
+                    </DropdownMenuCheckboxItem>
+                  ))}
+                </div>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -195,7 +153,7 @@ export function JobsWithFilter() {
           {currentPosts.map((post) => (
             <div key={post.id} className="bg-background rounded-md shadow overflow-hidden">
               <img
-                src={post.thumbnail}
+                src={post.thumbnailUrl}
                 alt={post.title}
                 width={400}
                 height={225}

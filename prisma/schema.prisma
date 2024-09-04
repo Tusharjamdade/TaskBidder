@@ -32,19 +32,20 @@ model UserProfile{
   authorId Int @unique
 }
 
-model PostJob{
+model PostJob {
   id          Int      @id @default(autoincrement())
   title       String
   location    String
+  jobType     String
   description String
   deadline    String
-  skills      String[]
-  thumbnail   String   
-  jobType     String
-  author   User @relation(fields: [authorId], references: [id])
-  authorId Int
-}
+  skills      String[] 
+  thumbnail   Bytes
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    Int
 
+  // other fields...
+}
 model Bids{
   id          Int   @id   @default(autoincrement())
   description String  
