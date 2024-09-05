@@ -145,7 +145,7 @@ export function SettingsPage() {
             <Separator />
             <div className="grid gap-1">
               <Link
-                href="#"
+                href="#profile"
                 className="flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                 prefetch={false}
               >
@@ -153,7 +153,7 @@ export function SettingsPage() {
                 <span>Profile</span>
               </Link>
               <Link
-                href="#"
+                href="#education"
                 className="flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                 prefetch={false}
               >
@@ -161,7 +161,7 @@ export function SettingsPage() {
                 <span>Education</span>
               </Link>
               <Link
-                href="#"
+                href="#settings"
                 className="flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                 prefetch={false}
               >
@@ -171,6 +171,7 @@ export function SettingsPage() {
             </div>
           </nav>
           <div className="grid gap-8">
+
             <section id="profile" className="bg-background rounded-lg shadow-sm p-6 md:p-8">
               <h2 className="text-xl font-semibold">Profile</h2>
               <Separator className="my-4" />
@@ -185,7 +186,7 @@ export function SettingsPage() {
                       onChange={(e) => setFirstNameError(e.target.value)}
                       required
                     />
-                    {firstNameError && <div className="text-red-500">{firstNameError}</div>}
+                    {/* {firstNameError && <div className="text-red-500">{firstNameError}</div>} */}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="last-name">Last Name</Label>
@@ -196,7 +197,7 @@ export function SettingsPage() {
                       onChange={(e) => setLastNameError(e.target.value)}
                       required
                     />
-                    {lastNameError && <div className="text-red-500">{lastNameError}</div>}
+                    {/* {lastNameError && <div className="text-red-500">{lastNameError}</div>} */}
                   </div>
                 </div>
                 <div className="grid gap-2">
@@ -209,12 +210,12 @@ export function SettingsPage() {
                     onChange={(e) => setEmailError(e.target.value)}
                     required
                   />
-                  {emailError && <div className="text-red-500">{emailError}</div>}
+                  {/* {emailError && <div className="text-red-500">{emailError}</div>} */}
                 </div>
                 <div className="grid gap-2">
                   <Label>Gender</Label>
                   <div className="flex items-center gap-4">
-                    <RadioGroup>
+                    <RadioGroup onChange={()=>{}}>
                       <RadioGroupItem id="gender-male" value="male" className="peer sr-only" />
                       <Label htmlFor="gender-male" className="flex items-center gap-2 cursor-pointer">
                         <div className="h-5 w-5 rounded-full border border-muted-foreground peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
@@ -295,6 +296,9 @@ export function SettingsPage() {
                 <Button className="justify-self-end">Save Changes</Button>
               </form>
             </section>
+
+
+
             <section id="education" className="bg-background rounded-lg shadow-sm p-6 md:p-8">
               <h2 className="text-xl font-semibold">Education</h2>
               <Separator className="my-4" />

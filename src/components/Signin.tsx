@@ -1,11 +1,27 @@
+"use client"
 import Image from "next/image"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useRef } from "react"
+import { signIn } from "next-auth/react"
 
 export function Signin() {
+  const userName = useRef("")
+  const password = useRef("")
+  const onClickHandler = async()=>{
+    console.log(userName)
+    console.log(password)
+    const result = signIn("credentials",{
+      username:userName.current,
+      password:password.current,
+      redirect:true,
+      callbackUrl:"/"
+    })
+    console.log(result)
+  }
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
@@ -24,6 +40,7 @@ export function Signin() {
                 type="email"
                 placeholder="m@example.com"
                 required
+                onChange={(e)=>{userName.current =e.target.value}}
               />
             </div>
             <div className="grid gap-2">
@@ -36,9 +53,9 @@ export function Signin() {
                   Forgot your password?
                 </Link>
               </div>
-              <Input id="password" type="password" required />
+              <Input id="password" type="password" required onChange={(e)=>{password.current =e.target.value}}/>
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full"  onClick={onClickHandler}>
               Login
             </Button>
             <Button variant="outline" className="w-full">

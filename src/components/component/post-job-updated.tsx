@@ -162,9 +162,9 @@ export function PostJobUpdated() {
           <Label>Job Image</Label>
           <div className="flex items-center gap-2">
             <Input type="file" onChange={handleFileChange} />
-            <Button variant="outline" size="icon">
+            {/* <Button variant="outline" size="icon">
               +
-            </Button>
+            </Button> */}
           </div>
         </div>
 

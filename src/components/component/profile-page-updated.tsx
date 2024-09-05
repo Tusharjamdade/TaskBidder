@@ -34,12 +34,12 @@ export function ProfilePageUpdated() {
     <div className="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12">
       <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-12">
         <div className="flex flex-col items-center gap-6">
-          <Avatar className="w-28 h-28 border-4 border-primary">
-            <AvatarImage src="/placeholder-user.jpg" alt="@username" />
+          <Avatar className="w-52 h-52 border-4 border-primary">
+            <AvatarImage src="/img2.jpg" alt="@username" />
             <AvatarFallback>JD</AvatarFallback>
           </Avatar>
           <div className="text-center space-y-1">
-            <h2 className="text-2xl font-bold">John Doe</h2>
+            <h2 className="text-2xl font-bold">Tushar Jamdade</h2>
             <p className="text-muted-foreground">Web Developer</p>
           </div>
           <div className="flex items-center gap-2 text-primary">
@@ -57,7 +57,7 @@ export function ProfilePageUpdated() {
             </div>
             <div className="flex items-center gap-2">
               <LocateIcon className="w-5 h-5 text-muted-foreground" />
-              <span>San Francisco, CA</span>
+              <span>Maharashtra, India</span>
             </div>
             <div className="flex items-center gap-2">
               <WalletIcon className="w-5 h-5 text-muted-foreground" />
