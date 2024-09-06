@@ -28,6 +28,7 @@ model UserProfile{
   jobRole     String
   bio         String
   image       String
+  skills      String[]  @default(["js","ts"])
   author      User @relation(fields: [authorId], references: [id])
   authorId Int @unique
 }
@@ -42,7 +43,7 @@ model PostJob {
   skills      String[] 
   thumbnail   Bytes
   author      User     @relation(fields: [authorId], references: [id])
-  authorId    Int
+  authorId    Int   
 
   // other fields...
 }

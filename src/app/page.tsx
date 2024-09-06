@@ -1,9 +1,9 @@
-"use client"; // Add this line to ensure this is a Client Component
+"use client";
 
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { useRouter } from "next/navigation";
-import { getCsrfToken, signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const words = [
   { text: "Get started with" },
@@ -15,13 +15,20 @@ const words = [
 
 export default function Home() {
   const router = useRouter();
-  const { data: session,status } = useSession();
-  // const csrfToken = await getCsrfToken()
+  const { data: session, status } = useSession();
 
+  // if (status === "authenticated") {
+  //   console.log("User details:", session.user.userDetails);
+  //   console.log("Jobs:", session.user.jobs);
+  //   console.log("Education:", session.user.education);
+  //   console.log("Support:", session.user.support);
+  //   console.log("Bids:", session.user.bids);
+  // }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      {status === "authenticated" ? (session.user?.email):"logout"}
+      {status === "authenticated" ? JSON.stringify(session) : "logout"}
+
       <BackgroundBeamsWithCollision>
         <div className="flex flex-col items-center justify-center min-h-full">
           <p className="text-neutral-600 dark:text-neutral-200 text-xs sm:text-base">

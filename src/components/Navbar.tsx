@@ -51,10 +51,10 @@ const Navbar = () => {
             TaskBidder
           </Link> */}
           <Link
-            href="/posts"
+            href="/jobs"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
-            Posts
+            Jobs
           </Link>
           <Link
             href="/post"

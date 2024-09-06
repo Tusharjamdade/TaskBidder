@@ -28,8 +28,15 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
+import { useRouter } from "next/navigation"
+import { useSession } from "next-auth/react"
 
 export function SettingsPage() {
+  const router = useRouter()
+  const { data: session,status } = useSession();
+  if(!(status === "authenticated")){
+    router.push("/signin")
+  }
   const [skills, setSkills] = useState([""])
   const handleAddSkill = () => {
     setSkills([...skills, ""])

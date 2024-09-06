@@ -28,13 +28,13 @@ export default function RootLayout({
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className={inter.className}>
-        <ThemeProvider>
+      <body>
+        {/* <ThemeProvider> */}
           <Provider>
             <Navbar />
             {children}
           </Provider>
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );
