@@ -4,6 +4,8 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { useRouter } from "next/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { Aboutus } from "@/components/component/Aboutus";
+import { TimeLineDemo } from "@/components/TimeLine";
 
 const words = [
   { text: "Get started with" },
@@ -37,13 +39,13 @@ export default function Home() {
           <TypewriterEffectSmooth words={words} />
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
             <button
-              onClick={() => router.push("/signup")}
+              onClick={() => signOut()}
               className="w-40 h-10 rounded-xl bg-black border dark:border-white border-transparent text-white text-sm"
             >
               Signup
             </button>
             <button
-              onClick={() => router.push("/signin")}
+              onClick={() => signIn()}
               className="w-40 h-10 rounded-xl bg-white text-black border border-black text-sm"
             >
               Signin
@@ -51,22 +53,8 @@ export default function Home() {
           </div>
         </div>
       </BackgroundBeamsWithCollision>
-
-      {session?.user ? (
-        <button
-          onClick={() => signOut()}
-          className="mt-4 w-40 h-10 rounded-xl bg-red-600 text-white text-sm"
-        >
-          Signout
-        </button>
-      ) : (
-        <button
-          onClick={() => signIn()}
-          className="mt-4 w-40 h-10 rounded-xl bg-blue-600 text-white text-sm"
-        >
-          Signin
-        </button>
-      )}
+      <Aboutus/>
+      {/* <TimeLineDemo/> */}
     </div>
   );
 }

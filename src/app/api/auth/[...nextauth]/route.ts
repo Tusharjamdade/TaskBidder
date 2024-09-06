@@ -81,6 +81,7 @@ const handler = NextAuth({
       return token;
     },
     async session({ session, token }: { session: CustomSession; token: CustomToken }) {
+      
       if (session.user) {
         // Attach user info from the token to the session
         session.user.id = token.userId as string;
@@ -88,12 +89,17 @@ const handler = NextAuth({
         session.user.jobs = token.jobs;
         session.user.education = token.education;
       }
+      
       return session;
     },
   },
   pages: {
     signIn: "/signin", // Custom sign-in page
   },
+  session:{
+    maxAge: 30 * 24 * 60 * 60,
+    updateAge: 24 * 60 * 60,
+  }
 });
 
 export const GET = handler;
