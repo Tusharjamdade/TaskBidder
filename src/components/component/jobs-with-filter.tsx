@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationLink, PaginationNext } from "@/components/ui/pagination";
 import axios from "axios";
+import Link from "next/link";
 
 export function JobsWithFilter() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -151,6 +152,7 @@ export function JobsWithFilter() {
       <main className="container mx-auto py-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {currentPosts.map((post) => (
+            <Link href={`bid/${post.id}`}>
             <div key={post.id} className="bg-background rounded-md shadow overflow-hidden">
               <img
                 src={post.thumbnailUrl}
@@ -170,6 +172,7 @@ export function JobsWithFilter() {
                 </div>
               </div>
             </div>
+            </Link>
           ))}
         </div>
         <div className="flex justify-center mt-8">

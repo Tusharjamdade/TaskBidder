@@ -2,6 +2,8 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../../../db";
+import { getServerSession } from "next-auth";
+import { NEXT_AUTH } from "@/app/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,7 +23,8 @@ export async function POST(req: NextRequest) {
     const fileBuffer = new Uint8Array(await file.arrayBuffer());
 
     // Assuming you have some way to get the current user ID
-    const authorId = 1; // Replace with actual user ID logic
+    // const authorId = ; // Replace with actual user ID logic
+    const session = await getServerSession(NEXT_AUTH);
 
     // Creating the job post
     await prisma.postJob.create({
@@ -34,7 +37,7 @@ export async function POST(req: NextRequest) {
         skills,
         thumbnail: fileBuffer,
         author: {
-          connect: { id: authorId }, // Connect the existing user
+          connect: { id: session?.user.id}, // Connect the existing user
         },
       },
     });

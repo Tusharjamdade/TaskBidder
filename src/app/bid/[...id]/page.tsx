@@ -1,9 +1,9 @@
 import React from 'react'
-import { UserPosts } from "../../components/component/user-posts";
+import { BidPage } from "../../../components/component/bid-page";
 const page = () => {
   return (
     <div>
-      <UserPosts/>
+      <BidPage/>
     </div>
   )
 }

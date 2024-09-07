@@ -57,7 +57,7 @@ const Navbar = () => {
             Jobs
           </Link>
           <Link
-            href="/post"
+            href="/postjob"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
             Post

@@ -1,9 +1,10 @@
 import React from 'react'
-import { BidPage } from "../../components/component/bid-page";
+import { ChatComponent } from '../../components/component/chat-component'
+
 const page = () => {
   return (
     <div>
-      <BidPage/>
+        <ChatComponent/>
     </div>
   )
 }
