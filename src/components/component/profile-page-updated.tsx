@@ -14,13 +14,15 @@ export  function ProfilePageUpdated() {
   if(!(status === "authenticated")){
     redirect("/signin")
   }
+      const blob = new Blob([new Uint8Array(session.user.profile.image)], { type: 'image/png' });
+          const url = URL.createObjectURL(blob);
   // console.log(session)
   return (
     <div className="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12">
       <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-12">
         <div className="flex flex-col items-center gap-6">
           <Avatar className="w-52 h-52 border-4 border-primary">
-            <AvatarImage src="/img2.jpg" alt="@username" />
+            <AvatarImage src={url} alt="@username" />
             <AvatarFallback>JD</AvatarFallback>
           </Avatar>
           <div className="text-center space-y-1">

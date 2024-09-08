@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Aboutus } from "@/components/component/Aboutus";
 import { TimeLineDemo } from "@/components/TimeLine";
+import { useEffect, useState } from "react";
 
 const words = [
   { text: "Get started with" },
@@ -17,20 +18,14 @@ const words = [
 
 export default function Home() {
   const router = useRouter();
+
   const { data: session, status } = useSession();
 
-  // if (status === "authenticated") {
-  //   console.log("User details:", session.user.userDetails);
-  //   console.log("Jobs:", session.user.jobs);
-  //   console.log("Education:", session.user.education);
-  //   console.log("Support:", session.user.support);
-  //   console.log("Bids:", session.user.bids);
-  // }
-
+  // Render nothing or a loading state if `isOnline` is not yet determined
+  
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
       {status === "authenticated" ? JSON.stringify(session) : "logout"}
-
       <BackgroundBeamsWithCollision>
         <div className="flex flex-col items-center justify-center min-h-full">
           <p className="text-neutral-600 dark:text-neutral-200 text-xs sm:text-base">
